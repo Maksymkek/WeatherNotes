@@ -406,7 +406,7 @@
 		D79E8FAA2FA8DBEE00B38068 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = D79E8F852FA8DBEC00B38068 /* WeatherNotes */;
-			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
+			baseConfigurationReferenceRelativePath = Resources/Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -441,7 +441,7 @@
 		D79E8FAB2FA8DBEE00B38068 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = D79E8F852FA8DBEC00B38068 /* WeatherNotes */;
-			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
+			baseConfigurationReferenceRelativePath = Resources/Secrets.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -476,7 +476,7 @@
 		D79E8FAD2FA8DBEE00B38068 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = D79E8F852FA8DBEC00B38068 /* WeatherNotes */;
-			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
+			baseConfigurationReferenceRelativePath = Resources/Secrets.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -501,7 +501,7 @@
 		D79E8FAE2FA8DBEE00B38068 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = D79E8F852FA8DBEC00B38068 /* WeatherNotes */;
-			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
+			baseConfigurationReferenceRelativePath = Resources/Secrets.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -525,7 +525,7 @@
 		D79E8FB02FA8DBEE00B38068 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = D79E8F852FA8DBEC00B38068 /* WeatherNotes */;
-			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
+			baseConfigurationReferenceRelativePath = Resources/Secrets.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -546,7 +546,7 @@
 		D79E8FB12FA8DBEE00B38068 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = D79E8F852FA8DBEC00B38068 /* WeatherNotes */;
-			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
+			baseConfigurationReferenceRelativePath = Resources/Secrets.xcconfig;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

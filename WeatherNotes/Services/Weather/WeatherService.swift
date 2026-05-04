@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class WeatherService {
+final class WeatherService : WeatherServiceProtocol{
     private var apiKey: String {
         guard let key = Bundle.main.object(forInfoDictionaryKey: "WEATHER_API_KEY") as? String else {
             fatalError("WEATHER_API_KEY not found. Check Info setting and .xcconfig!")
