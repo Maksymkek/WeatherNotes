@@ -13,7 +13,7 @@ enum LocationError: Error {
     case unableToFindLocation
 }
 
-final class LocationManager: NSObject, CLLocationManagerDelegate {
+final class LocationService: NSObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     
     private var locationContinuation: CheckedContinuation<CLLocationCoordinate2D, Error>?
@@ -27,12 +27,33 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         if manager.authorizationStatus == .denied || manager.authorizationStatus == .restricted {
             throw LocationError.unauthorized
         }
-        
         return try await withCheckedThrowingContinuation { continuation in
             self.locationContinuation = continuation
-            
-            manager.requestWhenInUseAuthorization()
+
+            switch manager.authorizationStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                manager.requestLocation()
+            case .notDetermined:
+                manager.requestWhenInUseAuthorization()
+            case .denied, .restricted:
+                locationContinuation?.resume(throwing: LocationError.unauthorized)
+                locationContinuation = nil
+            @unknown default:
+                locationContinuation?.resume(throwing: LocationError.unableToFindLocation)
+                locationContinuation = nil
+            }
+        }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
             manager.requestLocation()
+        case .denied, .restricted:
+            locationContinuation?.resume(throwing: LocationError.unauthorized)
+            locationContinuation = nil
+        default:
+            break
         }
     }
         
