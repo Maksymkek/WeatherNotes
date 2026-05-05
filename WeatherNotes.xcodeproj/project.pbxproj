@@ -33,6 +33,7 @@
 		D79E91272FA901BF00B38068 /* Exceptions for "WeatherNotes" folder in "WeatherNotes" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Info.plist,
 				Resources/Info.plist,
 			);
 			target = D79E8F822FA8DBEC00B38068 /* WeatherNotes */;
