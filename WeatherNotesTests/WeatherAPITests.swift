@@ -15,7 +15,7 @@ struct WeatherAPITests {
     @Test("Fetch weather data via WetherService")
     func fetchWeather() async throws {
         do {
-            let response = try await WeatherService().fetchWeather(
+            let response = try await WeatherService.shared.fetchWeather(
                 latitude: 44,
                 longitude: 44
             )
