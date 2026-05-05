@@ -63,25 +63,7 @@ struct NoteFormScreen: View {
                     
                     if let iconCode = weather.weather.first?.icon,
                        let iconURL = viewModel.iconURL(for: iconCode) {
-                        AsyncImage(url: iconURL) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView()
-                                    .frame(width: 40, height: 40)
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 40, height: 40)
-                                    .shadow(radius: 3)
-                                
-                            case .failure:
-                                Image(systemName: "cloud.slash")
-                                    .frame(width: 40, height: 40)
-                            @unknown default:
-                                EmptyView()
-                            }
-                        }
+                        WeatherImageView(imageURL: iconURL, size: 40)
                     }
                     Text(weather.weather.first?.main ?? "")
                 }
