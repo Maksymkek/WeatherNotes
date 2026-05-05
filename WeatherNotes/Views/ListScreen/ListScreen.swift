@@ -9,6 +9,7 @@ import CoreData
 import SwiftUI
 
 struct ListScreen: View {
+    
     @FetchRequest(
         sortDescriptors: [
             NSSortDescriptor(keyPath: \NoteEntity.timeStamp, ascending: false)
@@ -16,10 +17,9 @@ struct ListScreen: View {
         animation: .default
     )
     private var notes: FetchedResults<NoteEntity>
-    
     @StateObject var viewModel: ListScreenViewModel
     @State private var isShowingNoteForm: Bool = false
-    
+
     var body: some View {
         List(notes, id: \.objectID) { note in
             NoteView(
@@ -41,7 +41,7 @@ struct ListScreen: View {
         .sheet(
             isPresented: $isShowingNoteForm,
         ) {
-            NavigationStack{
+            NavigationStack {
                 NoteFormScreen(
                     viewModel: NoteFormViewModel(
                         storage: viewModel.storage,
@@ -53,5 +53,3 @@ struct ListScreen: View {
         }
     }
 }
-
-

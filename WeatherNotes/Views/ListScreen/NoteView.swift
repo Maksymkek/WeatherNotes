@@ -9,9 +9,9 @@ import SwiftUI
 import CoreData
 
 struct NoteView: View {
+    
     let viewModel: NoteViewModel
     @State private var isShowingDetailsView: Bool = false
-
    
     var body: some View {
         HStack {

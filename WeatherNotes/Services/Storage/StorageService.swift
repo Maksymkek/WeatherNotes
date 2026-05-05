@@ -21,16 +21,11 @@ final class StorageService: StorageServiceProtocol {
         note.text = text
         note.timeStamp = Date.now
         if let safeWeather =  weather{
+            note.location = safeWeather.name
             note.temperature = safeWeather.main.temp
             note.weatherCondition = safeWeather.weather.first?.description
             note.weatherIcon = safeWeather.weather.first?.icon
         }
         try context.save()
-    }
-    
-    func fetchNotes() throws -> [NoteEntity] {
-        let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: false)]
-        return try context.fetch(request)
     }
 }

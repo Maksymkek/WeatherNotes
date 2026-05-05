@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct WeatherImageView : View{
+    
     let imageURL: URL
     let size : CGFloat
     let progressViewSize: CGFloat
+    
     init(imageURL: URL, size: CGFloat, progressViewSize: CGFloat? = nil) {
         self.imageURL = imageURL
         self.size = size

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NoteDetailsScreen: View {
+    
     @ObservedObject var viewModel: NoteViewModel
     @Environment(\.dismiss) private var dismiss
 
@@ -42,11 +43,18 @@ struct NoteDetailsScreen: View {
                     progressViewSize: 80
                 )
             }
+            HStack(spacing: 8) {
+                
+                Text("\(Int(viewModel.note.temperature))°C")
+                    .font(.title2)
+                Text(viewModel.note.weatherCondition ?? "")
+                    .font(.title3)
+            }
+            Text(viewModel.note.location ?? "").foregroundStyle(.secondary)
+            Text(formattedDateTime)
+                .font(.caption)
+                .foregroundStyle(.secondary)
 
-            Text("\(Int(viewModel.note.temperature))°C")
-                .font(.title2)
-            Text(viewModel.note.weatherCondition ?? "")
-                .font(.title3)
         }
         .navigationTitle("Note details")
         .navigationBarTitleDisplayMode(.inline)

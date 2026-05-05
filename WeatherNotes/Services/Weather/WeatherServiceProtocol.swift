@@ -11,7 +11,6 @@ enum WeatherImageScale: String{
     case big = "4"
 }
 protocol WeatherServiceProtocol {
-    
     func fetchWeather(latitude: Double, longitude: Double) async throws -> WeatherResponse
     
     func iconURL(for iconCode: String, scale: WeatherImageScale) -> URL?

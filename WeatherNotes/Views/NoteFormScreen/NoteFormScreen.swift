@@ -5,8 +5,8 @@
 //  Created by Максим Грищенков on 04.05.2026.
 //
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct NoteFormScreen: View {
 
@@ -37,7 +37,11 @@ struct NoteFormScreen: View {
                 Button("Save", systemImage: "checkmark") {
                     try? viewModel.saveNote()
                     dismiss()
-                }.disabled(viewModel.noteText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }.disabled(
+                    viewModel.noteText.trimmingCharacters(
+                        in: .whitespacesAndNewlines
+                    ).isEmpty
+                )
             }
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel", systemImage: "xmark") {
@@ -60,9 +64,10 @@ struct NoteFormScreen: View {
                 HStack(alignment: .center, spacing: 8) {
                     Text("\(weather.name): \(Int(weather.main.temp))°C").bold()
                     Spacer()
-                    
+
                     if let iconCode = weather.weather.first?.icon,
-                       let iconURL = viewModel.iconURL(for: iconCode) {
+                        let iconURL = viewModel.iconURL(for: iconCode)
+                    {
                         WeatherImageView(imageURL: iconURL, size: 40)
                     }
                     Text(weather.weather.first?.main ?? "")
