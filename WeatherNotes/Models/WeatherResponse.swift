@@ -6,15 +6,18 @@
 //
 
 nonisolated struct WeatherResponse: Codable {
+
     let name: String
     let weather: [Weather]
     let main: Main
 }
+
 nonisolated struct Main: Codable {
+
     let temp: Double
     let pressure, humidity: Int
     let feelsLike, tempMin, tempMax: Double?
-    
+
     enum CodingKeys: String, CodingKey {
         case temp
         case feelsLike = "feels_like"
@@ -25,6 +28,7 @@ nonisolated struct Main: Codable {
 }
 
 nonisolated struct Weather: Codable {
+
     let id: Int
     let main, description, icon: String
 }

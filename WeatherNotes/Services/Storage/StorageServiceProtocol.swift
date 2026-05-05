@@ -7,5 +7,4 @@
 
 protocol StorageServiceProtocol {
     func saveNote(text: String, weather: WeatherResponse?) throws
-    func fetchNotes() throws -> [NoteEntity]
 }

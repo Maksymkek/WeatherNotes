@@ -57,6 +57,6 @@ class NoteFormViewModel: ObservableObject {
     }
 
     func iconURL(for iconCode: String) -> URL? {
-        weatherService.iconURL(for: iconCode)
+        weatherService.iconURL(for: iconCode, scale: .medium)
     }
 }

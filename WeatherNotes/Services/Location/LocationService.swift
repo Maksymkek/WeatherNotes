@@ -5,8 +5,8 @@
 //  Created by Максим Грищенков on 04.05.2026.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 enum LocationError: Error {
     case unauthorized
@@ -14,17 +14,20 @@ enum LocationError: Error {
 }
 
 final class LocationService: NSObject, CLLocationManagerDelegate {
+
     private let manager = CLLocationManager()
-    
-    private var locationContinuation: CheckedContinuation<CLLocationCoordinate2D, Error>?
-    
+    private var locationContinuation:
+        CheckedContinuation<CLLocationCoordinate2D, Error>?
+
     override init() {
         super.init()
         manager.delegate = self
     }
-    
+
     func getCurrentLocation() async throws -> CLLocationCoordinate2D {
-        if manager.authorizationStatus == .denied || manager.authorizationStatus == .restricted {
+        if manager.authorizationStatus == .denied
+            || manager.authorizationStatus == .restricted
+        {
             throw LocationError.unauthorized
         }
         return try await withCheckedThrowingContinuation { continuation in
@@ -36,15 +39,19 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             case .notDetermined:
                 manager.requestWhenInUseAuthorization()
             case .denied, .restricted:
-                locationContinuation?.resume(throwing: LocationError.unauthorized)
+                locationContinuation?.resume(
+                    throwing: LocationError.unauthorized
+                )
                 locationContinuation = nil
             @unknown default:
-                locationContinuation?.resume(throwing: LocationError.unableToFindLocation)
+                locationContinuation?.resume(
+                    throwing: LocationError.unableToFindLocation
+                )
                 locationContinuation = nil
             }
         }
     }
-    
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
@@ -56,14 +63,20 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             break
         }
     }
-        
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
         guard let location = locations.last else { return }
         locationContinuation?.resume(returning: location.coordinate)
         locationContinuation = nil
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
         locationContinuation?.resume(throwing: error)
         locationContinuation = nil
     }

@@ -41,7 +41,9 @@ final class WeatherService: WeatherServiceProtocol {
         return try decoder.decode(WeatherResponse.self, from: data)
     }
 
-    func iconURL(for iconCode: String) -> URL? {
-        URL(string: "https://openweathermap.org/img/wn/\(iconCode)@2x.png")
+    func iconURL(for iconCode: String, scale: WeatherImageScale) -> URL? {
+        URL(
+            string: "https://openweathermap.org/img/wn/\(iconCode)@\(scale.rawValue)x.png"
+        )
     }
 }

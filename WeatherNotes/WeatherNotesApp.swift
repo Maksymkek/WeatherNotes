@@ -11,19 +11,18 @@ import CoreData
 @main
 struct WeatherNotesApp: App {
 
-    let persistentContainer: NSPersistentContainer
-    let storage: StorageServiceProtocol
-    let weatherService: WeatherServiceProtocol
-    let locationService: LocationService
+    private let persistentContainer: NSPersistentContainer
+    private let storage: StorageServiceProtocol
+    private let weatherService: WeatherServiceProtocol
+    private let locationService: LocationService
 
     init() {
         let container = NSPersistentContainer(name: "WeatherNotesDB")
         container.loadPersistentStores { _, error in
-            if let error = error as NSError? {
-                fatalError("Core Data error: \(error), \(error.userInfo)")
-            }
+            if let error { fatalError(error.localizedDescription) }
         }
         persistentContainer = container
+
         storage = StorageService(context: container.viewContext)
         weatherService = WeatherService.shared
         locationService = LocationService()
@@ -32,8 +31,8 @@ struct WeatherNotesApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                NoteFormScreen(
-                    viewModel: NoteFormViewModel(
+                ListScreen(
+                    viewModel: ListScreenViewModel(
                         storage: storage,
                         weatherService: weatherService,
                         locationService: locationService
@@ -43,6 +42,4 @@ struct WeatherNotesApp: App {
             }
         }
     }
-    
-    
 }
