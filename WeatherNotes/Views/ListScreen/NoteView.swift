@@ -14,7 +14,7 @@ struct NoteView: View {
     @State private var isShowingDetailsView: Bool = false
    
     var body: some View {
-        HStack {
+        HStack(spacing: 4) {
             VStack(alignment: .leading) {
                 Text(viewModel.note.text ?? "")
                 if let date = viewModel.note.timeStamp {
@@ -28,6 +28,7 @@ struct NoteView: View {
                let iconURL = viewModel.iconURL(for: iconCode) {
                 WeatherImageView(imageURL: iconURL, size: 40)
             }
+            Text("\(Int(viewModel.note.temperature)) °C")
         }
         .contentShape(Rectangle())
         .onTapGesture {
